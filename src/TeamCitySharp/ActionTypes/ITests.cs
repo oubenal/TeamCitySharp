@@ -9,6 +9,7 @@ namespace TeamCitySharp.ActionTypes
     public interface ITests
     {
         TestOccurrences ByBuildLocator(BuildLocator locator);
+        TestOccurrences ByProjectLocator(ProjectLocator locator);
         TestOccurrences ByTestId(string testId);
     }
 }
