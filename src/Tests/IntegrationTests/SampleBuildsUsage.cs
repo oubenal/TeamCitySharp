@@ -276,7 +276,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_first_build_artifacts_relatedIssues_Statistics_no_field()
 
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       var tempBuild = m_client.Builds.LastBuildByBuildConfigId(tempBuildConfig.Id);
       var build = m_client.Builds.ById(tempBuild.Id);
 
@@ -292,11 +292,11 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_first_build_types_builds_investigations_compatible_agents_field_null()
 
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
+      var tempBuild = m_client.Builds.LastBuildByBuildConfigId(tempBuildConfig.Id);
 
       // Section 1
       var buildField = BuildField.WithFields(number: true, id: true);
-      var tempBuild = m_client.Builds.LastBuildByBuildConfigId(tempBuildConfig.Id);
       var build = m_client.Builds.GetFields(buildField.ToString()).ById(tempBuild.Id);
       Assert.IsNull(build.Artifacts, "No Artifacts 1");
       Assert.IsNull(build.RelatedIssues, "No RelatedIssues 1");
@@ -336,7 +336,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_1()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
 
 
       var buildField = BuildField.WithFields(id: true, taskId: true, buildTypeId: true, buildTypeInternalId: true,
@@ -355,7 +355,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_2()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       ItemsField itemsField = ItemsField.WithFields(item: true);
       BuildsField buildsField = BuildsField.WithFields();
       RelatedField relatedField = RelatedField.WithFields(builds: buildsField);
@@ -408,7 +408,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_resultingProperties()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
 
       PropertyField propertyField = PropertyField.WithFields(name:true,value:true);
       PropertiesField propertiesField = PropertiesField.WithFields(propertyField: propertyField);
@@ -421,7 +421,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_attributes()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
 
       EntryField entryField = EntryField.WithFields(name:true,value:true);
       EntriesField entriesField = EntriesField.WithFields(entry: entryField);
@@ -434,7 +434,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_trigger()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
 
       UserField userField =UserField.WithFields(id:true);
       BuildField buildField1 = BuildField.WithFields(id:true);
@@ -449,7 +449,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_BuildChanges()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
 
       BuildField buildField1 = BuildField.WithFields(id: true);
       BuildChangeField buildChangeField = BuildChangeField.WithFields(nextBuild: buildField1, prevBuild: buildField1);
@@ -462,8 +462,8 @@ namespace TeamCitySharp.IntegrationTests
 
     [Test]
     public void it_returns_full_build_field_Links()
-    {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+        {
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       LinkField linkField = LinkField.WithFields(type:true,url:true, relativeUrl: true);
       LinksField linksField = LinksField.WithFields(link:linkField);
       var buildField = BuildField.WithFields(links:linksField);
@@ -475,7 +475,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_versionedSettingsRevision()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       RevisionField revisionField = RevisionField.WithFields(version: true);
       var buildField = BuildField.WithFields(versionedSettingsRevision: revisionField);
       var tempBuild = m_client.Builds.LastBuildByBuildConfigId(tempBuildConfig.Id);
@@ -486,7 +486,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_statistics_with_build()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       PropertyField propertyField = PropertyField.WithFields(name: true, value: true);
       StatisticsField statisticsField = StatisticsField.WithFields(propertyField: propertyField,href:true, count:true);
       BuildField buildField = BuildField.WithFields(statistics: statisticsField);
@@ -500,7 +500,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_full_build_field_statistics_without_build ()
     {
-      var tempBuildConfig = m_client.BuildConfigs.All().First();
+      var tempBuildConfig = m_client.BuildConfigs.All().First(bc => m_client.Builds.LastBuildByBuildConfigId(bc.Id) != null);
       var tempBuild = m_client.Builds.LastBuildByBuildConfigId(tempBuildConfig.Id);
       PropertyField propertyField = PropertyField.WithFields(name: true, value: true);
       StatisticsField statisticsField = StatisticsField.WithFields(propertyField: propertyField, href: true, count: true);

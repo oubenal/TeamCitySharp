@@ -152,7 +152,7 @@ namespace TeamCitySharp.Connection
         throw new ArgumentException("Url must be specified");
 
       var url = CreateUrl(urlPart);
-
+      Console.WriteLine("[VERBOSE] requesting:" + url);
       var response =
         CreateHttpClient(m_credentials.UserName, m_credentials.Password, HttpContentTypes.ApplicationJson).Get(url);
       ThrowIfHttpError(response, url);
@@ -354,6 +354,12 @@ namespace TeamCitySharp.Connection
       {
         return false;
       }
+    }
+    public T GetNextHref<T>(string nextHref)
+    {
+      var reg = new System.Text.RegularExpressions.Regex(@"\/(guestAuth|httpAuth)(\/app\/rest)?(\/\d+.\d+)?");
+      string urlPart = nextHref.Substring(reg.Match(nextHref).Value.Length);
+      return Get<T>(urlPart);
     }
   }
 }

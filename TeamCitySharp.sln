@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{263F35DD-20C1-4209-B121-E962C9328C70}"
 EndProject
@@ -9,12 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamCitySharp.IntegrationTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamCitySharp.UnitTests", "src\Tests\UnitTests\TeamCitySharp.UnitTests.csproj", "{1DA175C4-2A6F-4B52-A9B4-87D382150AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamCitySharp", "src\TeamCitySharp\TeamCitySharp.csproj", "{419C8D24-ED8A-47BE-87BB-8790534FEF09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamCitySharp", "src\TeamCitySharp\TeamCitySharp.csproj", "{419C8D24-ED8A-47BE-87BB-8790534FEF09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{E947C127-1479-451D-994A-0E6935999466}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamCityRestAPI", "src\TeamCityRestAPI\TeamCityRestAPI.csproj", "{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,18 @@ Global
 		{419C8D24-ED8A-47BE-87BB-8790534FEF09}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{419C8D24-ED8A-47BE-87BB-8790534FEF09}.Release|x86.ActiveCfg = Release|Any CPU
 		{419C8D24-ED8A-47BE-87BB-8790534FEF09}.Release|x86.Build.0 = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|x86.ActiveCfg = Release|Any CPU
+		{C4916AA4-28B5-42B0-A931-A02EACBFA9F5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
