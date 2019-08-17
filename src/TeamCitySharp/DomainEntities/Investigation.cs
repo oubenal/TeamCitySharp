@@ -26,6 +26,6 @@ namespace TeamCitySharp.DomainEntities
     public InvestigationScope Scope { get; set; }
 
     [JsonProperty("target")]
-    public InvesigationTarget Target { get; set; }
+    public InvestigationTarget Target { get; set; }
   }
 }
