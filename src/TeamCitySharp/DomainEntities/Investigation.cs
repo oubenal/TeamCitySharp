@@ -27,5 +27,8 @@ namespace TeamCitySharp.DomainEntities
 
     [JsonProperty("target")]
     public InvestigationTarget Target { get; set; }
+
+    [JsonProperty("resolution")]
+    public InvestigationResolution Resolution { get; set; }
   }
 }
