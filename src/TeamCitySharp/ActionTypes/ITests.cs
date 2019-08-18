@@ -10,6 +10,6 @@ namespace TeamCitySharp.ActionTypes
     {
         TestOccurrences ByBuildLocator(BuildLocator locator);
         TestOccurrences ByProjectLocator(ProjectLocator locator);
-        TestOccurrences ByTestId(string testId);
+        TestOccurrences ByTestLocator(TestLocator locator);
     }
 }

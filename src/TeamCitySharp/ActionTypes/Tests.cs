@@ -36,9 +36,9 @@ namespace TeamCitySharp.ActionTypes
       return m_caller.Get<TestOccurrences>($"/testOccurrences?locator=currentlyFailing:true,affectedProject:({locator})");
     }
 
-    public TestOccurrences ByTestId(string testId)
+    public TestOccurrences ByTestLocator(TestLocator locator)
     {
-      return m_caller.Get<TestOccurrences>($"/testOccurrences?locator=test:(id:{testId})");
+      return m_caller.Get<TestOccurrences>($"/testOccurrences?locator=test:({locator})");
     }
 
     #endregion
