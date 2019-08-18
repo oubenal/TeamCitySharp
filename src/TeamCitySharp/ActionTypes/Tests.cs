@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TeamCitySharp.Connection;
 using TeamCitySharp.DomainEntities;
@@ -41,6 +42,38 @@ namespace TeamCitySharp.ActionTypes
       return m_caller.Get<TestOccurrences>($"/testOccurrences?locator=test:({locator})");
     }
 
+    public List<TestOccurrences> All(BuildLocator locator)
+    {
+      var result = new List<TestOccurrences>() { ByBuildLocator(locator) };
+      while (!(string.IsNullOrEmpty(result.Last().NextHref)))
+      {
+        var response = m_caller.Get<TestOccurrences>(result.Last().NextHref, false);
+        result.Add(response);
+      }
+      return result;
+    }
+
+    public List<TestOccurrences> All(ProjectLocator locator)
+    {
+      var result = new List<TestOccurrences>() { ByProjectLocator(locator) };
+      while (!(string.IsNullOrEmpty(result.Last().NextHref)))
+      {
+        var response = m_caller.Get<TestOccurrences>(result.Last().NextHref, false);
+        result.Add(response);
+      }
+      return result;
+    }
+
+    public List<TestOccurrences> All(TestLocator locator)
+    {
+      var result = new List<TestOccurrences>() { ByTestLocator(locator) };
+      while (!(string.IsNullOrEmpty(result.Last().NextHref)))
+      {
+        var response = m_caller.Get<TestOccurrences>(result.Last().NextHref, false);
+        result.Add(response);
+      }
+      return result;
+    }
     #endregion
   }
 }

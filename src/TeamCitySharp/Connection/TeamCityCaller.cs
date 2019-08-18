@@ -127,9 +127,9 @@ namespace TeamCitySharp.Connection
       return string.Empty;
     }
 
-    public T Get<T>(string urlPart)
+    public T Get<T>(string urlPart, bool isPartial = true)
     {
-      var response = GetResponse(urlPart);
+      var response = GetResponse(urlPart, isPartial);
       return response.StaticBody<T>();
     }
 
@@ -138,7 +138,7 @@ namespace TeamCitySharp.Connection
       GetResponse(urlPart);
     }
 
-    private HttpResponseMessage GetResponse(string urlPart)
+    private HttpResponseMessage GetResponse(string urlPart, bool isPartial = true)
     {
       if (CheckForUserNameAndPassword())
         throw new ArgumentException("If you are not acting as a guest you must supply userName and password");
@@ -146,8 +146,8 @@ namespace TeamCitySharp.Connection
       if (string.IsNullOrEmpty(urlPart))
         throw new ArgumentException("Url must be specified");
 
-      var url = CreateUrl(urlPart);
-
+      var url = CreateUrl(urlPart, isPartial);
+      Console.WriteLine("[VERBOSE] requesting:" + url);
       var response =
         CreateHttpClient(m_credentials.UserName, m_credentials.Password, HttpContentTypes.ApplicationJson).Get(url);
       ThrowIfHttpError(response, url);
@@ -254,14 +254,14 @@ namespace TeamCitySharp.Connection
         $"Error: {response.ReasonPhrase}\nHTTP: {response.StatusCode}\nURL: {url}\n{response.RawText()}");
     }
 
-    private string CreateUrl(string urlPart)
+    private string CreateUrl(string urlPart, bool isPartial = true)
     {
       var protocol = m_credentials.UseSSL ? "https://" : "http://";
       if(m_credentials.UseSSL) ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
       var authType = m_credentials.ActAsGuest ? "/guestAuth" : "/httpAuth";
       var restUrl = "/app/rest";
       var version = m_version == "" ? "" : $"/{m_version}";
-      var uri = $"{protocol}{m_credentials.HostName}{authType}{restUrl}{version}{urlPart}";
+      var uri = $"{protocol}{m_credentials.HostName}" + (isPartial ? $"{authType}{restUrl}{version}{urlPart}" : $"{urlPart}");
       return Uri.EscapeUriString(uri).Replace("+", "%2B");
     }
 

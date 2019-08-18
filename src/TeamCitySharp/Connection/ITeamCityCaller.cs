@@ -25,7 +25,7 @@ namespace TeamCitySharp.Connection
 
     string StartBackup(string urlPart);
 
-    T Get<T>(string urlPart);
+    T Get<T>(string url, bool isPartial = true);
 
     void Get(string urlPart);
 
