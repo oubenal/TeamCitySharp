@@ -8,7 +8,7 @@ using TeamCitySharp.Locators;
 namespace TeamCityRestAPI
 {
     using TestOccurrenceByProject = Dictionary<string, Dictionary<string, TestOccurrence>>;
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
@@ -17,7 +17,7 @@ namespace TeamCityRestAPI
         }
     }
 
-    internal class InspectInvestigations
+    internal sealed class InspectInvestigations
     {
         private readonly ITeamCityClient teamcityClient;
         public InspectInvestigations()
@@ -42,10 +42,10 @@ namespace TeamCityRestAPI
         public void Run()
         {
             Console.WriteLine("#Analyze Investigations");
-            var Investigations = ExtractInvestigation();
+            var investigations = ExtractInvestigation();
 
             var lastTestOccurrenceByProject = new TestOccurrenceByProject(); // cache
-            foreach (var investigation in Investigations)
+            foreach (var investigation in investigations)
             {
                 Console.WriteLine($@"##Analyze investigation 
 id=""{investigation.Id}"" 
